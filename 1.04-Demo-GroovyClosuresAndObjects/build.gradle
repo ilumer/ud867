@@ -97,9 +97,7 @@ myGroovyGreeter.printGreeting()
 myGroovyGreeter.greeting = "My custom greeting"
 myGroovyGreeter.printGreeting()
 
-/*
-
-The last Groovy feature we'll cover is that closures can have a delegate
+/*The last Groovy feature we'll cover is that closures can have a delegate
 object. Any variables or methods referenced in the closure that don't have a
 local definition are then evaluated against the closure's delegate. Let's make
 a closure that will access the property and method of our GroovyGreeter class.
