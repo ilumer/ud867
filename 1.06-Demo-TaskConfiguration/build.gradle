@@ -120,9 +120,9 @@ using the following syntax:
 
 */
 
-task myTask8(description: "Another description") {
+task myTask8(description: "Another description",group:"Some group") {
     doLast {
-        println "Doing something"
+        println "Doing something $group"
     }
 }
 
