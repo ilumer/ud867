@@ -10,12 +10,12 @@
     1. Configure dependencies for the "brew", "pour" and "drink" tasks
     such that to drink my coffee I must first pour it, and pouring my
     coffee requires me to first brew it.
+    1 drink depend on pour depend on brew
 
     2. Configure dependencies for the "drink" and "addSweetener" tasks
     such that adding sweetener requires that my coffee be poured and if
     I am adding sweetener, I shouldn't drink my coffee until I've done
     so.
-
     3. Configure dependencies for the "blackCoffee" and "sweetCoffee"
     tasks so that both include drinking coffee, but the "sweetCoffee"
     task also includes the adding of sweetener to my coffee.
@@ -39,30 +39,42 @@ task brew {
 }
 
 task pour {
+    dependsOn brew
     doLast {
         println "Pouring. Glug, glug, glug."
     }
 }
 
 task addSweetener {
+    dependsOn pour
+    //依赖于咖啡已经好了
     doLast {
         println "Adding sweetener. Stir, stir, stir."
     }
 }
 
 task drink {
+    dependsOn pour
     doLast {
         println "Drinking. Gulp, gulp, gulp."
     }
 }
 
 task blackCoffee {
+    dependsOn drink
+    group "blackCoffee"
+    //https://discuss.gradle.org/t/why-does-my-task-not-show-up-in-gradle-tasks/3268
+    //如果没有其他的task依赖或设置了group属性就可以显示 通过gradle tasks
     doLast {
         println "Mmmm, bitter! just how I like it."
     }
 }
 
 task sweetCoffee {
+    dependsOn pour
+    mustRunAfter addSweetener
+    //必须在加糖的后面 如果加糖的情况下
+    group = "sweetCoffee"
     doLast {
         println "Mmmm, sweet! just how I like it."
     }

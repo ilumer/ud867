@@ -80,6 +80,10 @@ task takeShower {
 
 task putOnFragrance {
     shouldRunAfter "takeShower"
+    //排序只有在两个task同时执行的时候才会发挥作用 当同时执行的时候 pOF一定在tS后面执行
+    //在引入order cycle的情况下 排序可能失去作用
+    //https://docs.gradle.org/current/userguide/more_about_tasks.html#sec:adding_dependencies_to_tasks
+    //example 19.17
     doLast{
         println "Smellin' fresh!"
     }
@@ -122,6 +126,7 @@ task getEquipped {
     dependsOn tasks.matching{ task -> task.name.startsWith("putOn")}
     doLast {
         println "All geared up!"
+        tasks.findAll{ task -> task.name.startsWith("putOn")}.each{println "task $it"}
     }
 }
 
