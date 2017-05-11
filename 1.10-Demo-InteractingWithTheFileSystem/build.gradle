@@ -19,14 +19,16 @@ directory.
 */
 
 task copyImages(type: Copy) {
-    from 'images'
-    into 'build'
+  from 'images'
+  exclude('*.txt')
+  //排除模式
+  into 'build'
 }
 
 
 /*
 
-We can specify files to include or exclude. Our filters can use wildcards,
+We can specify files to include or exclude. Our filters can use wildcards(通配符),
 allowing us to do things like include all files that match a certain pattern
 or have a particular file extension. This combination of source, destination,
 inclusions, and exclusions is called a CopySpec. Let configure our task to
@@ -36,20 +38,20 @@ pattern.
 */
 
 task copyJpegs(type: Copy) {
-    from 'images'
-    include '*.jpg'
-    into 'build'
+  from 'images'
+  include '*.jpg'
+  into 'build'
 }
 
 /*
 
 We can also configure a single Copy task to copy from multiple sources.
-CopySpecs can be hierarchical, which is particularly useful when we want to
-include certain files in a subfolder or exclude files from another.
+CopySpecs can be hierarchical(分级), which is particularly useful when we want to
+include certain files in a subfolder(子文件夹) or exclude files from another.
 
 Let's configure a Copy task which copies all JPEGs into one folder and GIFs
 into another. We define two child CopySpecs, one  to include only JPEG files
-and the other to include GIFs. We also specify the folder we want to copy
+and the other to include GIFs. We also specify(指定) the folder we want to copy
 these files to. These folders will be created as subfolders under the root
 copy destination. The result being that JPEGs will be copied to "build/jpeg"
 and all .gif files will be copied to "build/gif".
@@ -57,23 +59,23 @@ and all .gif files will be copied to "build/gif".
 */
 
 task copyImageFolders(type: Copy) {
-    from('images') {
-        include '*.jpg'
-        into 'jpeg'
-    }
+  from('images') {
+    include '*.jpg'
+    into 'jpeg' //子文件夹
+  }
 
-    from('images') {
-        include '*.gif'
-        into 'gif'
-    }
+  from('images') {
+    include '*.gif'
+    into 'gif'
+  }
 
-    into 'build'
+  into 'build'
 }
 
 /*
 
-Gradle provides task types for creating archives like Zip or Tar files.
-Archive tasks are nearly identical to Copy tasks, except instead of specifying
+Gradle provides task types for creating archives(文档) like Zip or Tar files.
+Archive tasks are nearly identical(相同) to Copy tasks, except instead of specifying
 a destination directory, we specify an archive name. Let's Zip up all files in
 our "images" directory. We use the Zip task's "baseName" and "destinationDir"
 properties to tell Gradle what to name the archive and where to create it.
@@ -83,9 +85,10 @@ Gradle Project interface provides a convenience method for creating files.
 */
 
 task zipImages(type: Zip) {
-    baseName = 'images'
-    destinationDir = file('build')
-    from 'images'
+  //派生于Zip这个task
+  baseName = 'images'
+  destinationDir = file('build')
+  from 'images'
 }
 
 /*
@@ -98,18 +101,28 @@ archive name and destination.
 */
 
 task zipImageFolders(type: Zip) {
-    baseName = 'images'
-    destinationDir = file('build')
+  baseName = 'images' //子文件夹
+  destinationDir = file('build') //目标文件夹
 
-    from('images') {
-        include '*.jpg'
-        into 'jpeg'
-    }
+  from('images') {
+    include '*.jpg'
+    into 'jpeg'
+  }
 
-    from('images') {
-        include '*.gif'
-        into 'gif'
-    }
+  from('images') {
+    include '*.gif'
+    into 'gif'
+  }
+}
+
+task unzipImageFolders(type: Copy) {
+  //如何使用gradle解压
+  //http://mrhaki.blogspot.sg/2012/06/gradle-goodness-unpacking-archive.html
+  def zipFile = file('build/images.zip')
+  def outputDir = file('build')
+  from zipTree(zipFile)
+  //https://docs.gradle.org/current/javadoc/org/gradle/api/Project.html#zipTree(java.lang.Object)
+  into outputDir
 }
 
 /*
@@ -121,5 +134,5 @@ in our project. Let's create a task that deletes the "build" folder.
 */
 
 task deleteBuild(type: Delete) {
-    delete 'build'
+  delete 'build'
 }
