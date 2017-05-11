@@ -7,22 +7,22 @@ determined that no work needed to be done.
 Exercises:
 
 1. Run the "copySources" task, which copies files from "src" to "build/out".
-2. Run the "copySources" task again and note it is now UP-TO-DATE.
+2. Run the "copySources" task again and note it is now UP-TO-DATE.//copySources output UP-TO-DATE
 3. Modify the contents of one of the files in the "src" directory.
-4. Run the "copySources" task again and note it is no longer UP-TO-DATE.
+4. Run the "copySources" task again and note it is no longer UP-TO-DATE.//no longer UP-TO-DATE
 5. Delete the "build" directory.
-6. Run the "copySources" task again and note it is no longer UP-TO-DATE.
+6. Run the "copySources" task again and note it is no longer UP-TO-DATE.// output change
 7. Run the "bundleSources" task. Note that the "copySources" task is
-still UP-TO-DATE.
+still UP-TO-DATE.// 正确
 8. Run the "bundleSources" task again and note it is now UP-TO-DATE.
 9. Delete the "build/sources.zip" file.
-10. Run the "bundleSources" task and note it is no longer UP-TO-DATE.
+10. Run the "bundleSources" task and note it is no longer UP-TO-DATE.//: bundleSources 没有出现UP-TO-DATE
 11. Modify the contents of one of the files in the "src" directory.
-12. Run the "bundleSources" task and note neither task is UP-TO-DATE.
+12. Run the "bundleSources" task and note neither task is UP-TO-DATE.// 没有出现UP-TO-DATE
 13. Run the "bundleSources" task again and note both tasks are now UP-TO-DATE.
 14. Delete the "build/out" directory.
 15. Run the "bundleSources" task again and note that only the "bundleSources"
-task is marked as UP-TO-DATE.
+task is marked as UP-TO-DATE.d//正确
 */
 
 task copySources(type: Copy) {
