@@ -8,7 +8,20 @@ Exercises:
 
 1. Run the "bundleWeb" task and note the error displayed by Gradle.
 
-2. Add the appropriate property to the gradle.properties file so that the
+----------------------------------------------------------------
+* What went wrong:
+A problem occurred evaluating root project '1.14-Exercise-UseGradleProperties'.
+> Could not get unknown property 'webOutputDir' for task ':bundleWeb' of type org.gradle.api.tasks.bundling.Zip.
+
+* Try:
+Run with --stacktrace option to get the stack trace. Run with --info or --debug option to get more log output.
+
+BUILD FAILED
+
+Total time: 0.873 secs
+-----------------------------------------------------------------
+
+2. Add the appropriate(适当) property to the gradle.properties file so that the
 "bundleWeb" task will create a zip file in a folder "build".
 
 3. Run the "bundleWeb" task by passing the value of the "webOutputDir" property
@@ -20,9 +33,14 @@ in the webOutputDir property via the command line).
 
 */
 
+ext {
+  webOutputDir = filename;
+}
+
 task bundleWeb(type: Zip) {
     baseName = 'web'
     destinationDir = file(webOutputDir)
-
     from 'src/web'
 }
+
+
