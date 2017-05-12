@@ -9,31 +9,39 @@ Exercises:
 
 1. Add logging statements at the beginning and end of the task action for
    the HelloTask at the INFO level.
-2. Execute the "hello" task with the appropriate command line options such
+2. Execute the "hello" task with the appropriate(适当的) command line options such
    that our newly added logging statements are shown in the console output.
+   //--info
 3. Modify the `println()` call in our task action to instead be a logging
    statement at the LIFECYCLE level.
 4. Execute the "hello" task and confirm the output.
-5. Execute the "hello" task with the appropriate command line options such
+5. Execute the "hello" task with the appropriate command(-q (log的等级要求偏低)) line options such
    that the text "Hello World" is no longer written to the console output.
 6. Uncomment and run the "derpy" task below, then use "--stacktrace" to find
    the error.
 7. CHALLENGE! Log "Catch me if you can" at DEBUG level, then use grep (or
     findstr on Windows) to find that message in the logs.
+    TODO:暂时没有找到解决的方法
 
 */
 
 task hello(type: HelloTask)
 
 class HelloTask extends DefaultTask {
+
     @TaskAction
     void doAction() {
-        println 'Hello World'
+        logger.info('start')
+        logger.lifecycle('Hello World')
+        logger.info('end')
     }
 }
 
-/*
+logger.debug("Catch me if you can")
 task derpy << {
     primp "Herp de derp"
 }
-*/
+
+//Could not find method primp() for arguments [Herp de derp] on task ':derpy' of type org.gradle.api.DefaultTask.
+
+
