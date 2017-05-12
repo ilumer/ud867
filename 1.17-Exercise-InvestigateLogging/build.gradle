@@ -21,7 +21,7 @@ Exercises:
    the error.
 7. CHALLENGE! Log "Catch me if you can" at DEBUG level, then use grep (or
     findstr on Windows) to find that message in the logs.
-    TODO:暂时没有找到解决的方法
+    //在bash上可以正常的使用
 
 */
 
