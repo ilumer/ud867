@@ -54,9 +54,8 @@ task execute(type: JavaExec) {
     classpath = sourceSets.main.runtimeClasspath
 }
 
-/*
 
-The `main` property tells the JavaExec task the path of your main class, and
+/*The `main` property tells the JavaExec task the path of your main class, and
 we'll talk more about the classpath very shortly.
 
 There's a number of resources that it would be a great idea to take a look at.
