@@ -16,7 +16,7 @@ Running our tests is easy, just run the 'test' task.
 
 You'll notice Gradle performs all the required steps to run our tests. It
 first compiles our production code, followed by our test code, and then runs
-our tests. In this case, the build was successful, indicating that all of our
+our tests. In this case, the build was successful, indicating(表明) that all of our
 tests passed.
 
 Gradle also provides detailed reports on our test execution. These reports are
