@@ -32,3 +32,16 @@ task printDependencies {
         configurations.compile.each { println it.name }
     }
 }
+
+repositories{
+    mavenCentral()
+    flatDir {
+        dirs 'libs'
+    }
+}
+
+dependencies{
+    compile 'commons-io:commons-io:2.5'
+    compile name:'commons-collections-3.2.1'
+}
+//http://stackoverflow.com/questions/20700053/how-to-add-local-jar-file-dependency-to-build-gradle-file
