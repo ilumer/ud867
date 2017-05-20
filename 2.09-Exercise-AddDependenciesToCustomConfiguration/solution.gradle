@@ -20,5 +20,6 @@ dependencies {
 task zipDeps(type: Zip) { // 5. Add Zip task to bundle dependencies from 'deps'
     baseName = "dependencyArchive"
     classifier = 'deps'
+    version = 4.4
     from configurations.deps
 }
