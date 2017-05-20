@@ -61,7 +61,7 @@ named 'custom' with the 'guava' dependency.
 
     $ gradle dependencies
 
-Configurations are really just fancy file collections and can be used anywhere
+Configurations are really just fancy(幻想) file collections and can be used anywhere
 a file collection can be used, such as in Copy tasks. This is useful if we
 want to download some dependencies from a remote repository and bundle them in
 our project somehow.
