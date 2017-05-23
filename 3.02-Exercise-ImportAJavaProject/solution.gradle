@@ -20,4 +20,5 @@ Java using the built in JavaExec task type.
 task solutionExecute(type: JavaExec) {
     main = "com.udacity.gradle.JokeTeller"
     classpath = sourceSets.main.runtimeClasspath
+    //print(classpath.getAsPath())
 }
