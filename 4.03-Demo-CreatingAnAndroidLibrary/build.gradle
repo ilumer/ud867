@@ -4,7 +4,7 @@ While it's totally possible to add an Android library project manually, it's a
 lot easier to use the wizard. Let's create an Android Library that defines an
 activity that will display the Gradle logo.
 
-The process is almost identical to creating a new Android app. We'll navigate
+The process is almost identical(相同) to creating a new Android app. We'll navigate
 to:
 
     New > New Module > Phone and Tablet Application > Android Library

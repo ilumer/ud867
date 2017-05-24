@@ -1,4 +1,4 @@
-Let's further break up the functionality of the Joke telling app by creating a
+Let's further(进一步) break up the functionality of the Joke telling app by creating a
 new activity to display the joke, and moving that activity to an Android
 Library project.
 
@@ -14,6 +14,6 @@ Library project.
 
 5. Add a button to the main activity that retrieves a joke from the Java
 library, packages the joke as an intent extra, and launches the activity from
-the Android library.
+the Android library.(./gradlew :androidlibrary:assembleRelease)
 
 6. Have the activity in the Android Library retrieve and display the joke.
