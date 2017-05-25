@@ -1,6 +1,6 @@
 /*
 
-Signing an app gives you a cryptographic way to associate your app with a
+Signing an app gives you a cryptographic(加密性) way to associate your app with a
 secret key you control. To sign this app, we need to do three things. First we
 need to create a keystore and a key. Second, we need to create a signing
 config in our build.gradle. The signing config basically describes where to
@@ -35,7 +35,7 @@ build script.
 Note that the storeFile field is using an absolute path, which isn't very
 portable. There are various issues you might want to consider regarding the
 security of checking your keystore and passwords into version control, but the
-most expedient thing to do is use Groovy string interpolation and the rootDir
+most expedient(权宜) thing to do is use Groovy string interpolation and the rootDir
 property on the project object to make the keystore location relative to the
 project root directory.
 
@@ -66,12 +66,17 @@ The last couple files in the APK are the files that contain the signature
 apply plugin: 'com.android.application'
 
 android {
+    def keystorePropertiesFile = rootProject.file("keystore.properties")
+    def keystoreProperties = new Properties()
+
+    keystoreProperties.load(new FileInputStream(keystorePropertiesFile))
+
     signingConfigs {
         config {
-            keyAlias 'udacity'
-            keyPassword 'password'
-            storeFile file("$rootDir/keystore.jks")
-            storePassword 'password'
+            keyAlias keystoreProperties['keyAlias']
+            keyPassword keystoreProperties['keyPassword']
+            storeFile file("$rootDir/"+keystoreProperties['storeFile'])
+            storePassword keystoreProperties['storePassword']
         }
     }
     compileSdkVersion 24
