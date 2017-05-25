@@ -4,7 +4,7 @@ In this exercise you will set up unit tests and connected tests for a simple And
 
 Exercises:
 
-    1. Set up unit tests that verify the initial count and increment methods of the ClickCounter class
+    1. Set up unit tests that verify(校验) the initial（初始） count and increment methods of the ClickCounter class
     2. Set up connected tests that test that clicking on the button actually increments the value displayed
 
 To complete the latter task, check out:
