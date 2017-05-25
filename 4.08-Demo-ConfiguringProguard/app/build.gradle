@@ -4,11 +4,11 @@ The Android plugin can help reduce the size of your app by stripping out
 unused code and resources. It does this with the help of a tool called
 Proguard.
 
-Proguard can do a lot of interesting stuff, including obfuscating your code by
+Proguard can do a lot of interesting stuff(东西), including obfuscating(混淆) your code by
 giving all your classes and methods meaningless names. That's mostly of
 interest if you're really worried about your code being reverse engineered.
 For our purposes, however, the properties we want to configure on our build
-type are minifyEnabled and shrinkResources.
+type are minifyEnabled and shrinkResources.（缩小和压缩）
 
 In this project, we've declared a dependency on Google Play Services, but
 we're not actually using any classes from GPS. Proguard is smart enough to
@@ -37,7 +37,7 @@ apply plugin: 'com.android.application'
 
 android {
     compileSdkVersion 24
-    buildToolsVersion "24.0.1"
+    buildToolsVersion "25.0.0"
 
     defaultConfig {
         applicationId "com.udacity.gradle.proguard"
@@ -46,6 +46,7 @@ android {
         versionCode 1
         versionName "1.0"
         multiDexEnabled = true
+        renderscriptSupportModeEnabled false
     }
     buildTypes {
         release {
@@ -65,6 +66,6 @@ android {
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
-    compile 'com.android.support:appcompat-v7:24.1.1'
-    compile 'com.google.android.gms:play-services:9.4.0'
+    compile 'com.android.support:appcompat-v7:24.0.0'
+    compile 'com.google.android.gms:play-services:10.2.0'
 }
