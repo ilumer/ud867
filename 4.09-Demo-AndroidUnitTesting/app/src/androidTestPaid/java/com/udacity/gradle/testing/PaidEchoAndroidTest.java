@@ -4,6 +4,7 @@ import android.support.test.runner.AndroidJUnit4;
 
 import com.udacity.gradle.testing.paid.PaidEcho;
 
+import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
@@ -28,5 +29,14 @@ public class PaidEchoAndroidTest {
         }
 
         assertEquals("hello", Echo.echo("hello", true));
+    }
+
+    @Test
+    public void verifyLoggingEchoResponse() {
+        Collection<String> strings = PaidEcho.echo("hello", 10, true);
+        Assert.assertEquals(strings.size(), 10);
+        for (String string : strings) {
+            Assert.assertEquals(string, "hello");
+        }
     }
 }
